@@ -1,0 +1,14 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 430px;
+   /* border: gold dotted;*/
+  }
+  
+  @media screen and (max-width: 585px){
+    .form {
+      margin: auto;
+      width: 282px;
+    }
+  }  

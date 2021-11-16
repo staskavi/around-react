@@ -1,0 +1,28 @@
+.element {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    max-width: 282px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    position: relative;
+    margin-right: 18px;
+    margin-bottom: 18px;
+}
+
+.element:nth-child(3n+3)  {
+    margin-right: 0;
+}
+
+@media screen and (max-width: 920px) {
+    .element{
+        margin-right: 0;
+    }
+    .element:nth-child(3n+3) {
+        margin-right: 0;
+    }
+}
+
+
+
