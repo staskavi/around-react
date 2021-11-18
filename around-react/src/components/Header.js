@@ -1,6 +1,5 @@
 import logo from '../images/Around.svg';
 
-
 export default function Header() {
     return ( 
         

@@ -22,7 +22,7 @@ export default function PopupWithForm(props) {
                 className="form" 
                 name={props.formName} 
                 action="#"
-                novalidate
+                noValidate
             >
             <h2
                 className="form__edit-title">{props.title}

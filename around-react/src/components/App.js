@@ -1,61 +1,50 @@
 
 import { useState } from 'react';
-import cousteau from '../images/cousteau.jpg';
-//import './App.css';
 import PopupWithForm from './PopupWithForm'; 
-import Header from './Header';
+import Main from './Main';
 import Footer from './Footer';
 import ImagePopup from './ImagePopup ';
 
-function App() {
+export default function App() {
 
   const [isEditProfilePopupOpen, setisEditProfilePopupOpen] = useState(false); 
   const [isAddPlacePopupOpen, setisAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] = useState(false);
   const [isConfirmDelPopupOpen, setisConfirmDelPopupOpen] = useState(false);
-  
+  const [isImagePopupOpen, setisImagePopupOpen] = useState(false);
+  const [selectedCard, setselectedCard] = useState({
+    name: "",
+    link: "",
+  });
+
+  const handleCardClick = (card) => {
+    setselectedCard({
+      name: card.name,
+      link: card.link,
+    });
+    setisImagePopupOpen(true);
+  };
+
   const closeAllPopups = () => {
     setisEditProfilePopupOpen(false);
     setisAddPlacePopupOpen(false);
     setisEditAvatarPopupOpen(false);
     setisConfirmDelPopupOpen(false);
+    setisImagePopupOpen(false);
   };
 
   const handleEditAvatarClick = () => setisEditAvatarPopupOpen(true);
   const handleEditProfileClick = () => setisEditProfilePopupOpen(true);
   const handleAddPlaceClick = () => setisAddPlacePopupOpen(true);
-  const handleConfirmDelCardClick = () => setisConfirmDelPopupOpen(true);
-  
 
   return ( 
-    <body className="page">
-      <main className="content">
-      <Header/>
-      <section className="profile">
-        <div className="profile__container">
-          <div className="profile__avatar-container">
-            <button className="profile__btn-avatar-edit" type="button" aria-label="" onClick={handleEditAvatarClick}>
-            </button>
-              <img className="profile__image" src={cousteau} alt="Jacques Cousteau"/>
-          </div>
-          <div className="profile__info">
-            <div className="profile__text">
-              <h1 className="profile__title">Jacques Cousteau</h1>
-              <p className="profile__subtitle">Explorer</p>
-            </div>
-            <button className="profile__btn-edit" type="button" aria-label="" onClick={handleEditProfileClick}>
-            </button>
-          </div>
-        </div>
-        <button className="profile__btn-add" type="button" aria-label="" onClick={handleAddPlaceClick}>
-        </button>
-      </section>
-        
-        <section className="elements">
-          <ul className="elements__list">
-          </ul>
-        </section>
-    </main>
+    <div className="page">
+     <Main 
+        onEditAvatarClick = {handleEditAvatarClick}
+        onEditProfileClick = {handleEditProfileClick} 
+        onEditAddPlaceClick =  {handleAddPlaceClick}
+        onCardClick = {handleCardClick}
+     />
     <Footer/>
     <PopupWithForm
         name="edit"
@@ -69,11 +58,11 @@ function App() {
           className="form__input profile-name" 
           id="profile-name" 
           type="text" 
-          value="" 
+          defaultValue="" 
           placeholder="Name" 
           name="editName" 
-          minlength="2" 
-          maxlength="40" 
+          minLength="2" 
+          maxLength="40" 
           required
           />
            <span className="form__input-error" id="profile-name-error">This field is required.</span>
@@ -81,18 +70,15 @@ function App() {
           className="form__input profile-about" 
           id="profile-about" 
           type="text" 
-          value="" 
+          defaultValue="" 
           placeholder="About Me" 
           name="editAbout" 
-          minlength="2" 
-          maxlength="200" 
+          minLength="2" 
+          maxLength="200" 
           required
           />
           <span className="form__input-error" id="profile-about-error">This field is required.</span>
           </PopupWithForm>
-
-
-
 
       <PopupWithForm
         name="add"
@@ -106,11 +92,11 @@ function App() {
           className="form__input" 
           id="title" 
           type="text" 
-          value="" 
+          defaultValue="" 
           placeholder="Title" 
           name="name" 
-          minlength="1" 
-          maxlength="30" 
+          minLength="1" 
+          maxLength="30" 
           required
           />
           <span className="form__input-error" id="title-error">This field is required.</span>
@@ -118,7 +104,7 @@ function App() {
           className="form__input" 
           id="image-link" 
           type="url" 
-          value="" 
+          defaultValue="" 
           placeholder="Image Link" 
           name="link"  
           required
@@ -141,7 +127,7 @@ function App() {
             type="url" 
             name="avatar" 
             id="avatar" 
-            value="" 
+            defaultValue="" 
             placeholder="Avatar url" 
             required
             />
@@ -155,39 +141,14 @@ function App() {
             buttonSubmitTitle="Yes"
             isOpen={isConfirmDelPopupOpen}
             onClose={closeAllPopups}
-          >
-          </PopupWithForm>
-          <div className="popup popup-image">
-      <div className="popup__container popup__image-container">
-        <button className="popup__btn-close" type="button" aria-label="Close">
-        </button>
-        <div className="popup__fullsize-image">
-          <img className="popup__image-photo" src="https://code.s3.yandex.net/web-code/yosemite.jpg" alt="Yosemite Valley"/>
-          <h2 className="popup__image-title">
-          </h2>
-        </div>
-      </div>
-    </div>
-     
-     
-
-    <template id="element-template">
-      <li className="element">
-        <button className="element__btn-del" type="button" aria-label="Delete">
-        </button>
-        <img className="element__image" src="https://code.s3.yandex.net/web-code/yosemite.jpg" alt="Yosemite Valley"/>
-        <div className="element__container">
-          <h2 className="element__title">
-          </h2>
-          <container className="element__likes-container">
-             <button className="element__btn-like" type="button" aria-label="Like">
-             </button>
-             <p className="element__num-of-likes"></p>
-          </container>
-        </div>
-      </li>
-    </template>
- </body>
+          />
+         
+        <ImagePopup
+        isOpen={isImagePopupOpen}
+        name="image"
+        selectedCard={selectedCard}
+        onClose={closeAllPopups}
+         />
+ </div>
  );
 }
-export default App;
