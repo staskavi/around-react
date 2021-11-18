@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/around-react/static/css/main.66bebb4d.chunk.css",
+    "main.js": "/around-react/static/js/main.0ff865a0.chunk.js",
+    "main.js.map": "/around-react/static/js/main.0ff865a0.chunk.js.map",
+    "runtime-main.js": "/around-react/static/js/runtime-main.fb31f16d.js",
+    "runtime-main.js.map": "/around-react/static/js/runtime-main.fb31f16d.js.map",
+    "static/js/2.dad5eeb7.chunk.js": "/around-react/static/js/2.dad5eeb7.chunk.js",
+    "static/js/2.dad5eeb7.chunk.js.map": "/around-react/static/js/2.dad5eeb7.chunk.js.map",
+    "static/js/3.381fa3e3.chunk.js": "/around-react/static/js/3.381fa3e3.chunk.js",
+    "static/js/3.381fa3e3.chunk.js.map": "/around-react/static/js/3.381fa3e3.chunk.js.map",
+    "index.html": "/around-react/index.html",
+    "static/css/main.66bebb4d.chunk.css.map": "/around-react/static/css/main.66bebb4d.chunk.css.map",
+    "static/js/2.dad5eeb7.chunk.js.LICENSE.txt": "/around-react/static/js/2.dad5eeb7.chunk.js.LICENSE.txt",
+    "static/media/Around.4e8e0a1d.svg": "/around-react/static/media/Around.4e8e0a1d.svg",
+    "static/media/index.css": "/around-react/static/media/plus.d86bb2ed.svg",
+    "static/media/cousteau.73fb6160.jpg": "/around-react/static/media/cousteau.73fb6160.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fb31f16d.js",
+    "static/js/2.dad5eeb7.chunk.js",
+    "static/css/main.66bebb4d.chunk.css",
+    "static/js/main.0ff865a0.chunk.js"
+  ]
+}
