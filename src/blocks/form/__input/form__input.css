@@ -1,0 +1,24 @@
+.form__input {
+    border: none;
+    font-size: 14px;
+    width: 358px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    margin-top: 29.74px;
+    height: 27.26px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 17px;
+    color: #000000;
+    padding: 0;
+  }
+
+  .form__input:focus {
+    outline: none;
+    background-color: rgba(211, 211, 211, 0.329);
+  }
+  
+  @media screen and (max-width: 585px) {
+    .form__input {
+      width: 238px;
+    }
+  }

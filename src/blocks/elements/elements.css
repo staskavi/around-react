@@ -1,0 +1,12 @@
+.elements {
+  margin-bottom: 50px;
+ /* border: red dotted;*/
+}
+
+@media screen and (max-width: 920px) {
+  .elements {
+      margin: 0 auto 32px auto;
+      max-width: 750px;
+      justify-content: space-between;
+  }
+}
