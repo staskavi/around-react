@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import PopupWithForm from './PopupWithForm'; 
 import Main from './Main';
@@ -53,8 +52,8 @@ export default function App() {
         buttonSubmitTitle="Save"
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
-      >
-        <input
+    >
+      <input
           className="form__input profile-name" 
           id="profile-name" 
           type="text" 
@@ -64,8 +63,8 @@ export default function App() {
           minLength="2" 
           maxLength="40" 
           required
-          />
-           <span className="form__input-error" id="profile-name-error">This field is required.</span>
+       />
+         <span className="form__input-error" id="profile-name-error">This field is required.</span>
         <input 
           className="form__input profile-about" 
           id="profile-about" 
@@ -76,11 +75,10 @@ export default function App() {
           minLength="2" 
           maxLength="200" 
           required
-          />
+        />
           <span className="form__input-error" id="profile-about-error">This field is required.</span>
-          </PopupWithForm>
-
-      <PopupWithForm
+    </PopupWithForm>
+    <PopupWithForm
         name="add"
         title="New Place"
         formName="add_form"
@@ -88,7 +86,7 @@ export default function App() {
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
       >
-          <input 
+        <input 
           className="form__input" 
           id="title" 
           type="text" 
@@ -100,7 +98,7 @@ export default function App() {
           required
           />
           <span className="form__input-error" id="title-error">This field is required.</span>
-          <input 
+        <input 
           className="form__input" 
           id="image-link" 
           type="url" 
@@ -111,10 +109,8 @@ export default function App() {
           />
           <span className="form__input-error" id="image-link-error">This field is required.
           </span>
-          </PopupWithForm>
-    
-   
-    <PopupWithForm
+     </PopupWithForm>
+     <PopupWithForm
         name="change-profile-img"
         title="Change Profile Picture"
         formName="edit_form"
