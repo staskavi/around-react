@@ -1,17 +1,18 @@
-import { api } from '../utils/api'
+//import { api } from '../utils/api'
 import Header from './Header';
 import Card from './Card';
-import cousteauImage from '../images/cousteau.jpg';
-import { useEffect, useState } from 'react';
+//import cousteauImage from '../images/cousteau.jpg';
+import { useContext } from 'react';
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-export default function Main({ onEditAvatarClick, onEditProfileClick, onEditAddPlaceClick, onCardClick }) {
+export default function Main({ cards, onEditAvatarClick, onEditProfileClick, onEditAddPlaceClick, onCardClick, onCardDelete }) {
 
-  const [userName, setUserName] = useState("");
-  const [userDescription, setUserDescription] = useState("");
-  const [userAvatar, setUserAvatar] = useState(cousteauImage);
-  const [cards, setCards] = useState([]);
+  //const [userName, setUserName] = useState("");
+  //const [userDescription, setUserDescription] = useState("");
+  //const [userAvatar, setUserAvatar] = useState(cousteauImage);
+  //const [cards, setCards] = useState([]);
 
-  useEffect(() => {
+ /* useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([userData, cardsData]) => {
         setUserName(userData.name);
@@ -20,7 +21,8 @@ export default function Main({ onEditAvatarClick, onEditProfileClick, onEditAddP
         setCards([...cardsData]);
       })
       .catch(console.error);
-  }, []);
+  }, []);*/
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <main className="content">
@@ -34,12 +36,12 @@ export default function Main({ onEditAvatarClick, onEditProfileClick, onEditAddP
               aria-label=""
               onClick={onEditAvatarClick}>
             </button>
-            <img className="profile__image" src={userAvatar} alt={userName} />
+            <img className="profile__image" src={currentUser["avatar"]} alt={currentUser["name"]} />
           </div>
           <div className="profile__info">
             <div className="profile__text">
-              <h1 className="profile__title">{userName}</h1>
-              <p className="profile__subtitle">{userDescription}</p>
+              <h1 className="profile__title">{currentUser["name"]}</h1>
+              <p className="profile__subtitle">{currentUser["about"]}</p>
             </div>
             <button
               className="profile__btn-edit"
@@ -64,6 +66,7 @@ export default function Main({ onEditAvatarClick, onEditProfileClick, onEditAddP
               key={card._id}
               card={card}
               onCardClick={onCardClick}
+              onCardDelete={onCardDelete}
             />
           ))}
         </ul>
