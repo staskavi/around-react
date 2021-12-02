@@ -1,5 +1,5 @@
 
-export default function PopupWithForm({ name, isOpen, onClose, formName, title, children, buttonSubmitTitle }) {
+export default function PopupWithForm({ name, isOpen, onClose, formName, title, children, buttonSubmitTitle, onSubmit }) {
 
     return (
         <>
@@ -16,6 +16,7 @@ export default function PopupWithForm({ name, isOpen, onClose, formName, title, 
                         name={formName}
                         action="#"
                         noValidate
+                        onSubmit={onSubmit}
                     >
                         <h2
                             className="form__edit-title">{title}

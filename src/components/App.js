@@ -4,6 +4,7 @@ import PopupWithForm from './PopupWithForm';
 import Main from './Main';
 import Footer from './Footer';
 import ImagePopup from './ImagePopup ';
+import EditProfilePopup from './EditProfilePopup';
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 export default function App() {
@@ -59,6 +60,24 @@ const handleCardLike = (card) => {
     })
     .catch(console.error);
 };
+/**/
+const handleUpdateUser = (user) => {
+  console.log(user);
+
+  api
+    .updateUserInfo(user)
+    .then((res) => {
+      setCurrentUser({
+        ...res,
+      });
+      setIsEditProfilePopupOpen(false);
+    })
+    .catch(console.error)
+    .finally(
+      () => console.log("in finally...")
+    );
+};
+
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
@@ -84,39 +103,11 @@ const handleCardLike = (card) => {
         onCardLike={handleCardLike}
       />
       <Footer />
-      <PopupWithForm
-        name="edit"
-        title="Edit Profile"
-        formName="edit_form"
-        buttonSubmitTitle="Save"
-        isOpen={isEditProfilePopupOpen}
-        onClose={closeAllPopups}
-      >
-        <input
-          className="form__input profile-name"
-          id="profile-name"
-          type="text"
-          defaultValue=""
-          placeholder="Name"
-          name="editName"
-          minLength="2"
-          maxLength="40"
-          required
+      <EditProfilePopup
+          isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
+          onUpdateUser={handleUpdateUser}
         />
-        <span className="form__input-error" id="profile-name-error">This field is required.</span>
-        <input
-          className="form__input profile-about"
-          id="profile-about"
-          type="text"
-          defaultValue=""
-          placeholder="About Me"
-          name="editAbout"
-          minLength="2"
-          maxLength="200"
-          required
-        />
-        <span className="form__input-error" id="profile-about-error">This field is required.</span>
-      </PopupWithForm>
       <PopupWithForm
         name="add"
         title="New Place"
