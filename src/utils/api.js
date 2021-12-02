@@ -1,4 +1,3 @@
-import { customFetch } from "./utils.js";
  const TOKEN = '064fc825-8a38-497e-b79d-9599b0efc019';
  const ADDRESS = 'https://around.nomoreparties.co/v1/group-12';
 
@@ -45,12 +44,13 @@ import { customFetch } from "./utils.js";
       }).then(this._handleResponse);
     }
   
-    updateUserImage(link) {
+    updateUserImage(avatar) {
+      console.log(avatar);
       return fetch(`${this._url}/users/me/avatar`, {
         method: 'PATCH',
         headers: this._headers,
         body: JSON.stringify({
-          avatar: link,
+          avatar: avatar,
         }),
       }).then(this._handleResponse);
     }
@@ -74,12 +74,12 @@ import { customFetch } from "./utils.js";
       }).then(this._handleResponse);
     }
 
-    changeLikeCardStatus = (card_id, isLiked) => {
-      return customFetch(`${this._url}/cards/likes/${card_id}`, {
+    changeLikeCardStatus(card_id, isLiked) {
+      return fetch(`${this._url}/cards/likes/${card_id}`, {
+        method: ((!isLiked) ? 'DELETE' : 'PUT'),
         headers: this._headers,
-        method: `${isLiked ? "PUT" : "DELETE"}`,
-      });
-    };
+      }).then(this._handleResponse);
+    }
 
     likeCard(card_id) {
       return fetch(`${this._url}/cards/likes/${card_id}`, {

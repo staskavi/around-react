@@ -5,6 +5,7 @@ import Main from './Main';
 import Footer from './Footer';
 import ImagePopup from './ImagePopup ';
 import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 export default function App() {
@@ -37,6 +38,17 @@ export default function App() {
     setIsImagePopupOpen(true);
   };
 /**/
+const handleUpdateAvatar = ({ avatar }) => {
+  api.updateUserImage(avatar)
+    .then((updateUserImage) => {
+      setCurrentUser(updateUserImage);
+    })
+    .then(() => {
+      closeAllPopups();
+    })
+    .catch((err) => console.log(err));
+};
+
 const handleCardDelete = (card) => {
   api
     .deleteCard(card._id)
@@ -46,36 +58,30 @@ const handleCardDelete = (card) => {
       );
       
     })
-    .catch(console.error);
+    .catch((err) => console.log(err));
 };
 /** */
 const handleCardLike = (card) => {
-  const isLiked = card.likes.some((i) => i._id === currentUser._id); //Check one more time if this card was already liked
-  api //Send a request to the API and getting the updated card data
+  const isLiked = card.likes.some((i) => i._id === currentUser._id); 
+  api 
     .changeLikeCardStatus(card._id, !isLiked)
     .then((newCard) => {
       setCards((state) =>
         state.map((c) => (c._id === card._id ? newCard : c))
       );
     })
-    .catch(console.error);
+    .catch((err) => console.log(err));
 };
 /**/
 const handleUpdateUser = (user) => {
-  console.log(user);
-
-  api
-    .updateUserInfo(user)
+  api.updateUserInfo(user)
     .then((res) => {
-      setCurrentUser({
+    setCurrentUser({
         ...res,
       });
-      setIsEditProfilePopupOpen(false);
+      closeAllPopups();
     })
-    .catch(console.error)
-    .finally(
-      () => console.log("in finally...")
-    );
+    .catch((err) => console.log(err));
 };
 
   const closeAllPopups = () => {
@@ -89,7 +95,7 @@ const handleUpdateUser = (user) => {
   const handleEditAvatarClick = () => setIsEditAvatarPopupOpen(true);
   const handleEditProfileClick = () => setIsEditProfilePopupOpen(true);
   const handleAddPlaceClick = () => setIsAddPlacePopupOpen(true);
-
+   
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
@@ -108,6 +114,12 @@ const handleUpdateUser = (user) => {
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
         />
+         <EditAvatarPopup
+          isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
+          onUpdateAvatar={handleUpdateAvatar}
+        />
+
       <PopupWithForm
         name="add"
         title="New Place"
@@ -139,25 +151,6 @@ const handleUpdateUser = (user) => {
         />
         <span className="form__input-error" id="image-link-error">This field is required.
         </span>
-      </PopupWithForm>
-      <PopupWithForm
-        name="change-profile-img"
-        title="Change Profile Picture"
-        formName="edit_form"
-        buttonSubmitTitle="Create"
-        isOpen={isEditAvatarPopupOpen}
-        onClose={closeAllPopups}
-      >
-        <input
-          className="form__input"
-          type="url"
-          name="avatar"
-          id="avatar"
-          defaultValue=""
-          placeholder="Avatar url"
-          required
-        />
-        <span className="form__input-error" id="avatar-error">This field is required.</span>
       </PopupWithForm>
 
       <PopupWithForm
