@@ -36,26 +36,29 @@ export default function App() {
     setIsImagePopupOpen(true);
   };
 /**/
-   const handleCardDelete = (card) => {
-    api.deleteCard(card._id)
-       .then((res) => {
-        setCards(
-          (state) => state.filter((c) => c._id !== card._id) 
-        );
-      })
-      .catch(console.error);
-  };
+const handleCardDelete = (card) => {
+  api
+    .deleteCard(card._id)
+    .then((res) => {
+      setCards(
+        (state) => state.filter((c) => c._id !== card._id)
+      );
+      
+    })
+    .catch(console.error);
+};
 /** */
-function handleLikeClick(card) {
-  // Check one more time if this card was already liked
-  const isLiked = card.likes.some(i => i._id === currentUser._id);
-  
-  // Send a request to the API and getting the updated card data
-  api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-  });
-}
-
+const handleCardLike = (card) => {
+  const isLiked = card.likes.some((i) => i._id === currentUser._id); //Check one more time if this card was already liked
+  api //Send a request to the API and getting the updated card data
+    .changeLikeCardStatus(card._id, !isLiked)
+    .then((newCard) => {
+      setCards((state) =>
+        state.map((c) => (c._id === card._id ? newCard : c))
+      );
+    })
+    .catch(console.error);
+};
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
@@ -78,7 +81,7 @@ function handleLikeClick(card) {
         onEditAddPlaceClick={handleAddPlaceClick}
         onCardClick={handleCardClick}
         onCardDelete={handleCardDelete}
-        onCardLike={handleLikeClick}
+        onCardLike={handleCardLike}
       />
       <Footer />
       <PopupWithForm

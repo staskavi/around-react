@@ -5,7 +5,7 @@ import Card from './Card';
 import { useContext } from 'react';
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-export default function Main({ cards, onEditAvatarClick, onEditProfileClick, onEditAddPlaceClick, onCardClick, onCardDelete }) {
+export default function Main({ cards, onEditAvatarClick, onEditProfileClick, onEditAddPlaceClick, onCardClick, onCardDelete, onCardLike }) {
 
   //const [userName, setUserName] = useState("");
   //const [userDescription, setUserDescription] = useState("");
@@ -67,6 +67,7 @@ export default function Main({ cards, onEditAvatarClick, onEditProfileClick, onE
               card={card}
               onCardClick={onCardClick}
               onCardDelete={onCardDelete}
+              onCardLike={onCardLike}
             />
           ))}
         </ul>

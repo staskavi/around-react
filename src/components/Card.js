@@ -10,7 +10,7 @@ export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const isOwn = card.owner._id === currentUser._id;
   // Creating a variable which you'll then set in `className` for the delete button
   const cardDeleteButtonClassName = (
-  `element__btn-del ${isOwn ? 'element__btn-del' : ' '}`
+  `element__btn-del ${isOwn ? 'enable' : 'disable'}`
   );
   // Check if the card was liked by the current user
   const isLiked = card.likes.some(i => i._id === currentUser._id);
@@ -19,7 +19,7 @@ export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const cardLikeButtonClassName = `element__btn-like ${ isLiked ? "element__btn-like_active" : "" }`;
 
   const handleClick = () => onCardClick(card);
-  const handleLikeClick = () => onCardLike(card);
+  const handleCardLike = () => onCardLike(card);
   const handleCardDelete = () => onCardDelete(card);
 
   return (
@@ -43,7 +43,7 @@ export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
             type="button"
             aria-label="Like"
             className={cardLikeButtonClassName}
-            onClick={handleLikeClick}
+            onClick={handleCardLike}
           />
           <span className="element__num-of-likes">{card.likes.length}</span>
         </div>

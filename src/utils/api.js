@@ -1,3 +1,4 @@
+import { customFetch } from "./utils.js";
  const TOKEN = '064fc825-8a38-497e-b79d-9599b0efc019';
  const ADDRESS = 'https://around.nomoreparties.co/v1/group-12';
 
@@ -73,7 +74,14 @@
         headers: this._headers,
       }).then(this._handleResponse);
     }
-  
+
+    changeLikeCardStatus = (card_id, isLiked) => {
+      return customFetch(`${this._url}/cards/likes/${card_id}`, {
+        headers: this._headers,
+        method: `${isLiked ? "PUT" : "DELETE"}`,
+      });
+    };
+
     likeCard(card_id) {
       return fetch(`${this._url}/cards/likes/${card_id}`, {
         method: 'PUT',
