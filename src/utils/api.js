@@ -1,7 +1,7 @@
  const TOKEN = '064fc825-8a38-497e-b79d-9599b0efc019';
  const ADDRESS = 'https://around.nomoreparties.co/v1/group-12';
 
- class API {
+ class Api {
     constructor({ baseUrl, headers }) {
       this._url = baseUrl;
       this._headers = headers;
@@ -96,7 +96,7 @@
     }
   }
 
-  const api = new API({
+  const api = new Api({
     baseUrl: ADDRESS,
     headers: {
       authorization: TOKEN,
