@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import api from '../utils/api';
 import Main from './Main';
 import Footer from './Footer';
 import ImagePopup from './ImagePopup';
@@ -8,6 +7,7 @@ import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
 import ConfirmDelPopup from './ConfirmDelPopup';
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import api  from "../utils/api.js";
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState({});
