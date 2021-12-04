@@ -1,27 +1,10 @@
-//import { api } from '../utils/api'
 import Header from './Header';
 import Card from './Card';
-//import cousteauImage from '../images/cousteau.jpg';
 import { useContext } from 'react';
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-export default function Main({ cards, onEditAvatarClick, onEditProfileClick, onEditAddPlaceClick, onCardClick, onCardDelete, onCardLike }) {
+export default function Main({ cards, onEditAvatarClick, onEditProfileClick, onEditAddPlaceClick, onCardClick, onCardDelete, onCardLike, onCardDelConfirm }) {
 
-  //const [userName, setUserName] = useState("");
-  //const [userDescription, setUserDescription] = useState("");
-  //const [userAvatar, setUserAvatar] = useState(cousteauImage);
-  //const [cards, setCards] = useState([]);
-
- /* useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then(([userData, cardsData]) => {
-        setUserName(userData.name);
-        setUserDescription(userData.about);
-        setUserAvatar(userData.avatar);
-        setCards([...cardsData]);
-      })
-      .catch(console.error);
-  }, []);*/
   const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -66,8 +49,8 @@ export default function Main({ cards, onEditAvatarClick, onEditProfileClick, onE
               key={card._id}
               card={card}
               onCardClick={onCardClick}
-              onCardDelete={onCardDelete}
               onCardLike={onCardLike}
+              onCardDelConfirm={onCardDelConfirm}
             />
           ))}
         </ul>

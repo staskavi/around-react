@@ -1,13 +1,9 @@
 import PopupWithForm from "./PopupWithForm";
-import {useContext} from 'react';
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-export default function ConfirmDelPopup({ selectedCard, isOpen, onClose, onConfirmDelPopupClick}) {
+export default function ConfirmDelPopup({ selectedCard, isOpen, onClose, onCardDelete }) {
 
-    const currentUser = useContext(CurrentUserContext);
+    const handleCardDelete = () => onCardDelete(selectedCard);
 
-    const handleConfirmDelPopupClick = () => onConfirmDelPopupClick(selectedCard);
-    console.log(selectedCard);
     return (
       <div>
         <PopupWithForm
@@ -17,7 +13,7 @@ export default function ConfirmDelPopup({ selectedCard, isOpen, onClose, onConfi
         buttonSubmitTitle="Yes"
         isOpen={isOpen}/*!*/
         onClose={onClose}
-        onSubmit={handleConfirmDelPopupClick}
+        onSubmit={handleCardDelete}
       />
       </div>
     );

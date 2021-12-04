@@ -1,8 +1,7 @@
 import {useContext} from 'react';
-//import { api } from '../utils/api'
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
+export default function Card({ card, onCardClick, onCardLike, onCardDelete, onCardDelConfirm }) {
 
   const currentUser = useContext(CurrentUserContext);
   
@@ -20,7 +19,7 @@ export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
 
   const handleClick = () => onCardClick(card);
   const handleCardLike = () => onCardLike(card);
-  const handleCardDelete = () => onCardDelete(card);
+  const handleCardDelConfirm = () => onCardDelConfirm(card);
 
   return (
     <li className="element">
@@ -34,7 +33,7 @@ export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
         type="button"
         aria-label="Delete"
         className={cardDeleteButtonClassName}
-        onClick={handleCardDelete}
+        onClick={handleCardDelConfirm}
       />
       <div className="element__container">
         <h2 className="element__title">{card.name}</h2>
