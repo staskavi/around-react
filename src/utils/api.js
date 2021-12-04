@@ -96,10 +96,11 @@
     }
   }
 
-  export const api = new API({
+  const api = new API({
     baseUrl: ADDRESS,
     headers: {
       authorization: TOKEN,
       'content-type': 'application/json',
     },
   });
+  export default api;
