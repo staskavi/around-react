@@ -1,4 +1,4 @@
-
+import React from "react";
 export default function PopupWithForm({ name, isOpen, onClose, formName, title, children, buttonSubmitTitle, onSubmit }) {
 
     return (

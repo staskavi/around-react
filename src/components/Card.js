@@ -51,4 +51,3 @@ export default function Card({ card, onCardClick, onCardLike, onCardDelete }) {
     </li>
   );
 }
-

@@ -3,9 +3,10 @@ import { api } from '../utils/api';
 import PopupWithForm from './PopupWithForm';
 import Main from './Main';
 import Footer from './Footer';
-import ImagePopup from './ImagePopup ';
+import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
+import AddPlacePopup from './AddPlacePopup';
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 export default function App() {
@@ -48,11 +49,20 @@ const handleUpdateAvatar = ({ avatar }) => {
     })
     .catch((err) => console.log(err));
 };
-
+/***/
+const handleAddPlaceSubmit = (data) => {
+  api.addNewCard(data)
+    .then((res) => {
+      setCards([res, ...cards]);
+      setIsAddPlacePopupOpen(false);
+    })
+    .catch((err) => console.log(err));
+};
+/***/
 const handleCardDelete = (card) => {
   api
     .deleteCard(card._id)
-    .then((res) => {
+    .then(() => {
       setCards(
         (state) => state.filter((c) => c._id !== card._id)
       );
@@ -119,39 +129,12 @@ const handleUpdateUser = (user) => {
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
         />
-
-      <PopupWithForm
-        name="add"
-        title="New Place"
-        formName="add_form"
-        buttonSubmitTitle="Create"
-        isOpen={isAddPlacePopupOpen}
-        onClose={closeAllPopups}
-      >
-        <input
-          className="form__input"
-          id="title"
-          type="text"
-          defaultValue=""
-          placeholder="Title"
-          name="name"
-          minLength="1"
-          maxLength="30"
-          required
+        <AddPlacePopup
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+          onAddPlaceSubmit={handleAddPlaceSubmit}
         />
-        <span className="form__input-error" id="title-error">This field is required.</span>
-        <input
-          className="form__input"
-          id="image-link"
-          type="url"
-          defaultValue=""
-          placeholder="Image Link"
-          name="link"
-          required
-        />
-        <span className="form__input-error" id="image-link-error">This field is required.
-        </span>
-      </PopupWithForm>
+     
 
       <PopupWithForm
         name="del-card"
