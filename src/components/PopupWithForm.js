@@ -2,7 +2,6 @@ import React from "react";
 export default function PopupWithForm({ name, isOpen, onClose, formName, title, children, buttonSubmitTitle, onSubmit }) {
 
     return (
-        <>
             <div className={`popup popup-${name} ${isOpen && 'popup_opened'}`}>
                 <div className="popup__container">
                     <button
@@ -15,7 +14,6 @@ export default function PopupWithForm({ name, isOpen, onClose, formName, title, 
                         className="form"
                         name={formName}
                         action="#"
-                        noValidate
                         onSubmit={onSubmit}
                     >
                         <h2
@@ -30,6 +28,5 @@ export default function PopupWithForm({ name, isOpen, onClose, formName, title, 
                     </form>
                 </div>
             </div>
-        </>
     );
 }

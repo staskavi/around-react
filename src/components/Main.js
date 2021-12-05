@@ -1,4 +1,3 @@
-import Header from './Header';
 import Card from './Card';
 import { useContext } from 'react';
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
@@ -9,7 +8,6 @@ export default function Main({ cards, onEditAvatarClick, onEditProfileClick, onE
 
   return (
     <main className="content">
-      <Header />
       <section className="profile">
         <div className="profile__container">
           <div className="profile__avatar-container">
@@ -41,7 +39,6 @@ export default function Main({ cards, onEditAvatarClick, onEditProfileClick, onE
           onClick={onEditAddPlaceClick}>
         </button>
       </section>
-
       <section className="elements">
         <ul className="elements__list">
           {cards.map((card) => (
@@ -55,23 +52,6 @@ export default function Main({ cards, onEditAvatarClick, onEditProfileClick, onE
           ))}
         </ul>
       </section>
-
-      <template id="element-template">
-        <li className="element">
-          <button className="element__btn-del" type="button" aria-label="Delete">
-          </button>
-          <img className="element__image" src="https://code.s3.yandex.net/web-code/yosemite.jpg" alt="Yosemite Valley" />
-          <div className="element__container">
-            <h2 className="element__title">
-            </h2>
-            <div className="element__likes-container">
-              <button className="element__btn-like" type="button" aria-label="Like">
-              </button>
-              <p className="element__num-of-likes" />
-            </div>
-          </div>
-        </li>
-      </template>
     </main>
   );
 }

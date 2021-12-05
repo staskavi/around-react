@@ -43,7 +43,8 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       maxLength="40"
       required
       onChange={handleChangeName}
-      value={name}
+      value={name || ""}
+
     />
     <span className="form__input-error" id="profile-name-error">This field is required.</span>
     <input
@@ -56,7 +57,8 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       maxLength="200"
       required
       onChange={handleChangeDescription}
-      value={description}
+      value={description || ""}
+
     />
     <span className="form__input-error" id="profile-about-error">This field is required.</span>
   </PopupWithForm>

@@ -2,7 +2,10 @@ import PopupWithForm from "./PopupWithForm";
 
 export default function ConfirmDelPopup({ selectedCard, isOpen, onClose, onCardDelete }) {
 
-    const handleCardDelete = () => onCardDelete(selectedCard);
+    const handleCardDelete = (e) => {
+      e.preventDefault();
+      onCardDelete(selectedCard);
+    }
 
     return (
       <div>

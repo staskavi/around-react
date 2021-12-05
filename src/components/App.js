@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import ImagePopup from './ImagePopup';
@@ -117,6 +118,7 @@ const handleUpdateUser = (user) => {
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
+      <Header />
       <Main
         cards={cards}
         onEditAvatarClick={handleEditAvatarClick}
